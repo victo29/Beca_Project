@@ -1,0 +1,126 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arimo', sans-serif;
+}
+
+body{
+    background: linear-gradient(180deg, rgba(126, 20, 158, 0.904) 0%, rgb(226, 91, 28) 100%);
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+
+.title{
+    color:#fff ;
+   
+    font-size: 50px;
+    position: relative;
+    top:30px;
+    padding: auto;
+
+}
+
+img{
+    width: 250px;
+    position: absolute;
+   top: 0;
+   left: 0;
+}
+
+
+@media screen and (max-width:468px){
+    .title{font-size: 20px;
+        position: absolute;
+        top: 30px;
+        
+    }
+
+    img{
+        position: absolute;
+        width: 100px;
+        left: 0;
+    }
+
+   
+}
+
+.container{
+    background-color: #9359a679;
+    border-radius: 14px;
+    margin: 14px;
+    max-width: 400px;
+    width: 100%;
+    box-sizing: 0 3px 5px rgba(0,0,0, 0.5);
+    overflow: hidden;
+    padding: auto;
+   
+}
+
+.header{
+    background: #9359a679;
+    padding: 20px;
+    text-align: center ;
+    color: white;
+    border: 0;
+}
+
+.form{
+    padding: 18px;
+}
+
+.form-content{
+    margin-bottom: 8px;
+    padding: 18px;
+    position: relative;   
+}
+
+.form-content label{
+    display: inline-block;
+    margin-bottom: 4px;
+}
+
+.form-content input{
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+    padding: 8px;
+    padding: 8px;
+    border: 2px solid #dfdfdf;
+}
+
+.form-content a{
+    position: absolute;
+    bottom: -8;
+    left: 0;
+    visibility: hidden;
+    padding: 8px;
+
+}
+
+.form button{
+    background-color: #ED5927;
+    color: #FFFFFF;
+    width: 100%;
+    border-radius: 14px ;
+    padding: 10px;
+    border: 0;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 14px;
+}
+
+.form-content.error input{
+    border-color: red;
+}
+
+.form-content.error a{
+    color: red;
+    visibility: visible;
+    
+}

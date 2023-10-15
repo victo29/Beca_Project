@@ -1,0 +1,32 @@
+*{
+    font-family: 'Arimo', sans-serif;
+}
+
+#picture__input{
+    display: none;
+}
+
+.picture{
+    width: 400px;
+    aspect-ratio: 16/9;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaaa;
+    border: 2px dashed currentColor;
+    width: 100%;
+    cursor: pointer;
+    transition: color 200ms ease-in-out, background 200ms ease-in-out;
+}
+
+.picture:hover{
+    color: #555;
+    background: #aaaa;
+    box-shadow: 0 0 5px #555;
+}
+
+.picture__img{
+    max-width: 100%;
+}
+
