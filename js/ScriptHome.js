@@ -1,14 +1,18 @@
 const inputFile = document.querySelector('#picture__input');
 const pictureImage = document.querySelector('.picture__image');
-const linkText = document.querySelector('#link')
-var btnPublicar = document.getElementById('publicar')
-var botaoCriarCartao = document.getElementById('criarCartao')
 
-var btnHome = document.getElementById("home")
-var btnArtigos = document.getElementById("artigos")
-var btnDocumentos = document.getElementById("documentos")
-var btnSlides = document.getElementById("slides")
-var btnExercicios = document.getElementById("exercicios")
+
+const linkText = document.querySelector('#link');
+var btnPublicar = document.getElementById('publicar');
+var botaoCriarCartao = document.getElementById('criarCartao');
+var btnHome = document.getElementById("home");
+var btnArtigos = document.getElementById("artigos");
+var btnDocumentos = document.getElementById("documentos");
+var btnSlides = document.getElementById("slides");
+var btnExercicios = document.getElementById("exercicios");
+var btnPesquiar = document.getElementById("pesquisa");
+var inputPesquisa = document.getElementById("input_pesquisa");
+
 
 let imagemURL;
 let tipoDeDocumento; 
@@ -34,41 +38,58 @@ btnPublicar.addEventListener("click", function(){
     if (div === true) {
         
         document.getElementById("abaPublicar").hidden = false
-        ocultarElementos("cards", "abaArtigo", "abaDocumentos", "abaSlides", "abaExercicios");
+        removeElementosPeesquisa()
+        ocultarElementos("cards", "abaArtigo", "abaDocumentos", "abaSlides", "abaExercicios","abaPesquisar");
     }
 });
 
 
 
 btnHome.addEventListener("click", function(){
+    removeElementosPeesquisa()
     document.getElementById("cards").hidden = false;
-    ocultarElementos("abaPublicar", "abaArtigo", "abaDocumentos", "abaSlides", "abaExercicios");
+    ocultarElementos("abaPublicar", "abaArtigo", "abaDocumentos", "abaSlides", "abaExercicios","abaPesquisar");
 })
 
 btnArtigos.addEventListener("click", function(){
+    removeElementosPeesquisa()
     document.getElementById("abaArtigo").hidden = false
-    ocultarElementos("abaPublicar", "cards", "abaDocumentos", "abaSlides", "abaExercicios");
+    ocultarElementos("abaPublicar", "cards", "abaDocumentos", "abaSlides", "abaExercicios","abaPesquisar");
     coletarEAdicionarElementos("adicionaArtigo",'Artigo')
 
 })
 
 btnDocumentos.addEventListener("click", function(){
+    removeElementosPeesquisa()
     document.getElementById("abaDocumentos").hidden = false
-    ocultarElementos("abaPublicar", "cards", "abaArtigo", "abaSlides", "abaExercicios");
+    ocultarElementos("abaPublicar", "cards", "abaArtigo", "abaSlides", "abaExercicios","abaPesquisar");
     coletarEAdicionarElementos("adicionaDocumento","Documento")
 })
 
 btnSlides.addEventListener("click", function(){
+    removeElementosPeesquisa()
     document.getElementById("abaSlides").hidden = false
-    ocultarElementos("abaPublicar", "cards", "abaArtigo", "abaDocumentos", "abaExercicios");
+    ocultarElementos("abaPublicar", "cards", "abaArtigo", "abaDocumentos", "abaExercicios","abaPesquisar");
     coletarEAdicionarElementos("adicionaSlide","Slide")
 })
 
 btnExercicios.addEventListener("click", function(){
+    removeElementosPeesquisa()
     document.getElementById("abaExercicios").hidden = false
-    ocultarElementos("abaPublicar", "cards", "abaArtigo", "abaDocumentos", "abaSlides");
+    ocultarElementos("abaPublicar", "cards", "abaArtigo", "abaDocumentos", "abaSlides","abaPesquisar");
     coletarEAdicionarElementos("adicionaExercicio","Exercício")
 })
+
+
+
+
+const ativarPesquisa=()=>{
+    document.getElementById("abaPesquisar").hidden = false
+    removeElementosPeesquisa()
+    ocultarElementos("abaPublicar", "cards", "abaArtigo", "abaDocumentos", "abaSlides","abaExercicios");
+    pesquisar("adicionaPesquisa",inputPesquisa)
+}
+
 
 const ativar=(elemento)=>{
     let itens=document.getElementsByClassName("select")
@@ -93,6 +114,13 @@ function ocultarElementos(...elementIds) {
       element.hidden = true;
     }
   });
+}
+
+function removeElementosPeesquisa(){
+    const div= document.getElementById("adicionaPesquisa");
+    while (div.firstChild) {
+        div.removeChild(div.firstChild);
+      }
 }
 
 
@@ -261,6 +289,45 @@ inputFile.addEventListener('change', function(e){
 
                 paragrafos.forEach(paragrafo => {
                     if (paragrafo.textContent.includes(topico)) {
+                        contemArtigo = true;
+                    }
+                });
+
+                if (contemArtigo) {
+                    
+                    const divClonada = div.cloneNode(true);
+
+                    
+                    destino.appendChild(divClonada);
+                }
+            });
+        }
+  
+
+        function pesquisar(aba,topico) {
+
+        
+            
+            const destino = document.getElementById(aba);
+
+            const filhosDestino = destino.children;
+            for (let i = filhosDestino.length - 1; i >= 0; i--) {
+                if (!filhosDestino[i].classList.contains('dropdown')) {
+                    destino.removeChild(filhosDestino[i]);
+                }
+            }
+
+            var Cards = document.getElementById("cards");
+            const divsArtigo = Cards.querySelectorAll('.card.mb-3');
+
+            divsArtigo.forEach(div => {
+                
+                const titulos = div.querySelectorAll('h5');
+                let contemArtigo = false;
+
+                titulos.forEach(titulo => {
+                        elemento = titulo.textContent.toUpperCase()
+                    if (elemento.includes(topico.value.toUpperCase())) {
                         contemArtigo = true;
                     }
                 });

@@ -46,12 +46,12 @@
 
   
             </ul>
-            <form class="d-flex ">
-              <input class="form-control me-2 rounded-pill" type="Pesquisar" style="background-color: #54385e; border: rgb(56, 52, 52); " placeholder="" aria-label="Pesquisar">
-              <button class="btn btn-outline-light disabled" type="submit">
+            <div class="d-flex ">
+              <input id="input_pesquisa" class="form-control me-2 rounded-pill" type="Pesquisar" style="background-color: #54385e; border: rgb(56, 52, 52); " placeholder="" aria-label="Pesquisar">
+              <button id="pesquisa" onclick="ativarPesquisa()" class="btn btn-outline-light " type="submit">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </button>
-            </form>
+            </div>
 
             
           </div>
@@ -248,6 +248,27 @@
             <hr>
 
             <div id="adicionaExercicio" class="mt-4">
+
+            </div>
+
+           </div>
+
+           <div id="abaPesquisar"  hidden="true" >
+            <div>
+              <div class="dropdown" ">
+                <button class="btn  btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Filtro
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item disabled" href="#">Mais acessados</a></li>
+                  <li><a class="dropdown-item active  " href="#">Data de postagem</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <hr>
+
+            <div id="adicionaPesquisa" class="mt-4">
 
             </div>
 
